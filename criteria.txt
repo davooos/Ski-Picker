@@ -14,11 +14,11 @@ Skill Level:
 6 = A (all terrain)
 
 Best Region:
-PNW = P
-West = W
-Rockies = R
-East = E
-Alps = A
+1 = P (pnw)
+2 = W (west)
+3 = R (rockies)
+4 = E (east)
+5 = A (alps)
 
 Playful Rating:
 1 = A (most stable)
@@ -29,9 +29,12 @@ Playful Rating:
 6 = F (most playful)
 
 Terrain Type:
-All Mountain = A
-All Mountain Wide = W
-All Mountain Narrow = N
-Powder = P
-Carver = C
-Touring = T
+1 = A (all mntn)
+2 = W (all mntn wide)
+3 = N (all mntn narrow)
+4 = P (pow)
+5 = C (carver)
+
+Touring:
+1 = Yes
+2 = No

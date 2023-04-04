@@ -1,18 +1,18 @@
-Brand of Ski,Name of Ski,Gender,Body Type,Skill Level,Best Region,Playful Rating,Terrain Type
-Blizzard,Rustler 9,M,,,,,
-Blizzard,Rustler 10,M,,,,,
-Blizzard,Rustler 11,M,,,,,
-"Blizzard ",Brahma 82,M,,,,,
-Blizzard,Brahma 88,M,,,,,
-Blizzard,Brahma 82,M,,,,,
-Blizzard,Bonafide 97,M,,,,,
-Blizzard,Cochise 106,M,,,,,
-Blizzard,Hustle 9,U,,,,,
-Blizzard,Hustle 10,U,,,,,
-Blizzard,Hustle 11,U,,,,,
-Blizzard,Black Pearl 82,F,,,,,
-Blizzard,Black Pearl 88,F,,,,,
-Blizzard,Black Pearl 97,F,,,,,
-Blizzard,Sheeva 9,F,,,,,
-Blizzard,Sheeva 10,F,,,,,
-Blizzard,Sheeva 11,F,,,,,
+Brand of Ski,Name of Ski,Gender,Body Type,Skill Level,Best Region,Playful Rating,Terrain Type,Touring
+Blizzard,Rustler 9,M,TSMLX,GBLDA,PWREA,BCDE,AWN,N
+Blizzard,Rustler 10,M,TSMLX,BLDA,PWR,BCDE,AW,N
+Blizzard,Rustler 11,M,SMLX,BLDA,PWR,BCDE,WP,N
+Blizzard,Brahma 82,M,SMLX,BLDA,EA,AB,C,N
+Blizzard,Brahma 88,M,SMLX,BLDA,EA,AB,NC,N
+Blizzard,Bonafide 97,M,MLX,LDA,PWR,AB,AWN,N
+Blizzard,Cochise 106,M,MLX,LDA,PWR,AB,W,N
+Blizzard,Hustle 9,U,TSMLX,BLDA,PWREA,BCD,AWNT,Y
+Blizzard,Hustle 10,U,TSMLX,LDA,PWR,BCD,AWT,Y
+Blizzard,Hustle 11,U,SMLX,LDA,PWR,234,WPT,Y
+Blizzard,Black Pearl 82,F,TSML,BLDA,EA,AB,C,N
+Blizzard,Black Pearl 88,F,TSMLX,BLDA,EA,AB,NC,N
+Blizzard,Black Pearl 97,F,TSMLX,BLDA,PRWE,AB,AWN,N
+Blizzard,Sheeva 9,F,TSMLX,GBLDA,PWREA,BCDE,AWN,N
+Blizzard,Sheeva 10,F,TSMLX,GBLDA,PWR,BCDE,AW,N
+Blizzard,Sheeva 11,F,SMLX,BLDA,PWR,BCDE,WP,N
+Blizzard,Spur,M,MLX,DA,PWR,ABC,P,N
