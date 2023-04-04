@@ -38,3 +38,4 @@ Terrain Type:
 Touring:
 1 = Y (yes)
 2 = N (no)
+

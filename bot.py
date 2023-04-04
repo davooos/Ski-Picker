@@ -94,6 +94,16 @@ class Skier: # Class for the skier profile, uses total point system to match up 
             return "N" # Otherwise, not touring
 
 
-
 def main():
-    pass
+    # self, name, gender, age, weight, height, skill, region, playfulness, terrain, touring
+    name = str(input("What is your username?: "))
+    gender = str(input("What is your gender? Enter M or F: "))
+    age = int(input("What is your age? Enter a number 1-100: "))
+    weight = int(input("What is your weight in lbs? Enter a whole number 1-600: "))
+    height = int(input("What is your height in inches? Enter a whole number 1-100: "))
+    skill = int(input("What is your skill level? Enter a whole number 1-6, 1 never touched skis, 3 skiing blues, and 6 can ski the entire mountain: "))
+    region = int(input("What region do you ski in? Enter 1 for PNW, 2 for US West, 3 for Rockies, 4 for East Cost, and 5 for Alps: "))
+    playfulness = int(input("How playful do you want your skis? Enter a number 1-6, 1 being the most stable, 6 being the most playful: "))
+    terrain = int(input("What type of ski are you looking for? Enter a number 1-5, 1 being All Mountain, 2 being All Mountain Wide, 3 being All Mountain Narrow, 4 being Powder, and 5 being a Carving Ski: "))
+
+main()
