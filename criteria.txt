@@ -36,5 +36,5 @@ Terrain Type:
 5 = C (carver)
 
 Touring:
-1 = Yes
-2 = No
+1 = Y (yes)
+2 = N (no)

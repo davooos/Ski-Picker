@@ -65,4 +65,10 @@ class Skier: # Class for the skier profile, uses total point system to match up 
             return "P" # Powder
         elif(self.terrain == 5):
             return "C" # Carver
+        
+    def get_touring(self):
+        if(self.touring == 1):
+            return "Y" # Touring ski
+        else:
+            return "N" # Otherwise, not touring
 
