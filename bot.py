@@ -144,11 +144,11 @@ def topThree(skier, skis): # Returns top three ski options
                 points += 1
             ski.insert(0, points)
     else:
-        return # ADD ERROR HANDLING!!!
+        main() # ADD ERROR HANDLING!!!
     topSkis.sort(reverse=True) # Sorts list
     output = ("#1: " + topSkis[0][1] + " " + topSkis[0][2] + "\n" + 
               "#2: " + topSkis[1][1] + " " + topSkis[1][2] + "\n" + 
-              "#3: " + topSkis[2][1] + " " + topSkis[2][2] + "\n") 
+              "#3: " + topSkis[2][1] + " " + topSkis[2][2]) 
     return output
 
 def main():
