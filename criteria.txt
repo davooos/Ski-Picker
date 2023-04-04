@@ -1,0 +1,36 @@
+Body Types:
+Very small = T (tiny)
+Small = S
+Average = M (medium)
+Large = L
+Very large = X (xl)
+
+Skill Level:
+1 = F (first time)
+2 = G (greens)
+3 = B (blues)
+4 = L (blacks)
+5 = D (double blacks)
+6 = A (all terrain)
+
+Best Region:
+PNW = P
+West = W
+Rockies = R
+East = E
+Alps = A
+
+Playful Rating:
+1 = A (most stable)
+2 = B 
+3 = C 
+4 = D 
+5 = E 
+6 = F (most playful)
+
+Terrain Type:
+All Mountain = A
+All Mountain Wide = W
+All Mountain Narrow = N
+Powder = P
+Carver = C
