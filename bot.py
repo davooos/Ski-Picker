@@ -111,7 +111,7 @@ def topThree(skier, skis): # Returns top three ski options
         if(skier.gender == "M"): # Filters out based off gender
             if(ski[2] == "M" or ski[2] == "U"): # If ski is mens or unisex
                 genderSkis.append(ski)
-        else:
+        elif(skier.gender == "F"):
             if(ski[2] == "F" or ski[2] == "U"): # If ski is womens or unisex
                 genderSkis.append(ski)
 
@@ -144,7 +144,7 @@ def topThree(skier, skis): # Returns top three ski options
                 points += 1
             ski.insert(0, points)
     else:
-        main() # ADD ERROR HANDLING!!!
+        return ("No skis found!")
     topSkis.sort(reverse=True) # Sorts list
     output = ("#1: " + topSkis[0][1] + " " + topSkis[0][2] + "\n" + 
               "#2: " + topSkis[1][1] + " " + topSkis[1][2] + "\n" + 
