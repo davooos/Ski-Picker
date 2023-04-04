@@ -4,7 +4,7 @@ class Skier: # Class for the skier profile, uses total point system to match up 
         self.gender = gender # String with F or M
         self.age = age # Integer with age
         self.weight = weight # Integer with weight in lbs
-        self.height = height # Integer with height in ft
+        self.height = height # Integer with height in inches
         self.skill = skill # Integer with skill level 1-6
         self.region = region # Integer with region (West, PNW, Rockies, East, Alps)
         self.playfullness = playfulness # Integer with stable being 1 and playful being 6 (1-6)
@@ -12,7 +12,28 @@ class Skier: # Class for the skier profile, uses total point system to match up 
         self.touring = touring # Integer with touring or not
 
     def get_body_type(self):
-        pass
+        if(self.gender == "M"): # Males
+            if(self.weight >= 250 or self.height >= 74):
+                return "X" # Very large
+            elif(self.weight >= 180 or self.height >= 70):
+                return "L" # Large
+            elif(self.weight >= 140 or self.height >= 66):
+                return "M" # Medium
+            elif(self.weight >= 120 or self.height >= 62):
+                return "S" # Small
+            elif(self.weight < 120 or self.height < 62):
+                return "T" # Very small
+        if(self.gender == "F"): # Females
+            if(self.weight >= 250 or self.height >= 72):
+                return "X" # Very large
+            elif(self.weight >= 180 or self.height >= 68):
+                return "L" # Large
+            elif(self.weight >= 120 or self.height >= 64):
+                return "M" # Medium
+            elif(self.weight >= 100 or self.height >= 60):
+                return "S" # Small
+            elif(self.weight < 80 or self.height < 55):
+                return "T" # Very small
 
     def get_skill(self): # Returns skill level with letter
         if(self.skill == 1):
@@ -72,3 +93,7 @@ class Skier: # Class for the skier profile, uses total point system to match up 
         else:
             return "N" # Otherwise, not touring
 
+
+
+def main():
+    pass

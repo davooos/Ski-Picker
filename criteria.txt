@@ -1,5 +1,5 @@
 Body Types:
-Very small = T (tiny)
+Very small = T (Very small)
 Small = S
 Average = M (medium)
 Large = L
