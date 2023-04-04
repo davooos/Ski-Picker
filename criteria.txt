@@ -34,3 +34,4 @@ All Mountain Wide = W
 All Mountain Narrow = N
 Powder = P
 Carver = C
+Touring = T
