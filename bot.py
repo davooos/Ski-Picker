@@ -7,7 +7,7 @@ class Skier: # Class for the skier profile, uses total point system to match up 
         self.height = height # Integer with height in inches
         self.skill = skill # Integer with skill level 1-6
         self.region = region # Integer with region (West, PNW, Rockies, East, Alps)
-        self.playfullness = playfulness # Integer with stable being 1 and playful being 6 (1-6)
+        self.playfulness = playfulness # Integer with stable being 1 and playful being 6 (1-6)
         self.terrain = terrain # Integer with terrain type (All mountain, all mountain wide, all mountain narrow, powder, carver)
         self.touring = touring # Integer with touring or not
 
@@ -50,29 +50,29 @@ class Skier: # Class for the skier profile, uses total point system to match up 
             return "A" # All terrain
     
     def get_region(self): # Returns region with letter
-        if(self.region == "1"):
+        if(self.region == 1):
             return "P" # PNW
-        elif(self.region == "2"):
+        elif(self.region == 2):
             return "W" # West
-        elif(self.region == "3"):
+        elif(self.region == 3):
             return "R" # Rockies
-        elif(self.region == "4"):
+        elif(self.region == 4):
             return "E" # East
-        elif(self.region == "5"):
+        elif(self.region == 5):
             return "A" # Alps
     
     def get_playfulness(self):
-        if(self.playfullness == 1):
+        if(self.playfulness == 1):
             return "A" # Most stable
-        elif(self.playfullness == 2):
+        elif(self.playfulness == 2):
             return "B"
-        elif(self.playfullness == 3):
+        elif(self.playfulness == 3):
             return "C" 
-        elif(self.playfullness == 4):
+        elif(self.playfulness == 4):
             return "D" 
-        elif(self.playfullness == 5):
+        elif(self.playfulness == 5):
             return "E" 
-        elif(self.playfullness == 6):
+        elif(self.playfulness == 6):
             return "F" # Most playful
 
     def get_terrain(self):
@@ -93,9 +93,65 @@ class Skier: # Class for the skier profile, uses total point system to match up 
         else:
             return "N" # Otherwise, not touring
 
+def getSkis(file): # Returns list of all the skis
+    allSkis = [] # Defines list
+    skis = open(file, 'r') # Opens csv file with skis
+    for line in skis: # Runs through each line
+        line = line.strip() # Strips newline off end 
+        allSkis.append(line.split(",")) # Splits up each line by category
+    skis.close() # Closes csv file
+    allSkis.pop(0) # Removes the headers
+    return allSkis
+
+def topThree(skier, skis): # Returns top three ski options
+    genderSkis = [] # Defines list for top skis
+    topSkis = []
+
+    for ski in skis: # Cycles through each sublist within list
+        if(skier.gender == "M"): # Filters out based off gender
+            if(ski[2] == "M" or ski[2] == "U"): # If ski is mens or unisex
+                genderSkis.append(ski)
+        else:
+            if(ski[2] == "F" or ski[2] == "U"): # If ski is womens or unisex
+                genderSkis.append(ski)
+
+    for ski in genderSkis: # Cycles through each sublist within list
+        if(skier.get_touring() == "Y"): # Filters out based off touring or not
+            if(ski[8] == "Y"): # If ski is touring
+                topSkis.append(ski)
+        else:
+            if(ski[8] == "N"): # If ski is not touring
+                topSkis.append(ski)
+
+    bodyType = skier.get_body_type()
+    skill = skier.get_skill()
+    region = skier.get_region() # Pulls value from each module inside Skier
+    playfulness = skier.get_playfulness()
+    terrain = skier.get_terrain()
+
+    if(len(topSkis) > 0):
+        for ski in topSkis:
+            points = 0
+            if(bodyType in ski[3]):
+                points += 1
+            if(skill in ski[4]):
+                points += 1
+            if(region in ski[5]): # Adds points for each criteria
+                points += 1
+            if(playfulness in ski[6]):
+                points += 1
+            if(terrain in ski[7]):
+                points += 1
+            ski.insert(0, points)
+    else:
+        return # ADD ERROR HANDLING!!!
+    topSkis.sort(reverse=True) # Sorts list
+    output = ("#1: " + topSkis[0][1] + " " + topSkis[0][2] + "\n" + 
+              "#2: " + topSkis[1][1] + " " + topSkis[1][2] + "\n" + 
+              "#3: " + topSkis[2][1] + " " + topSkis[2][2] + "\n") 
+    return output
 
 def main():
-    # self, name, gender, age, weight, height, skill, region, playfulness, terrain, touring
     name = str(input("What is your username?: "))
     gender = str(input("What is your gender? Enter M or F: "))
     age = int(input("What is your age? Enter a number 1-100: "))
@@ -105,5 +161,9 @@ def main():
     region = int(input("What region do you ski in? Enter 1 for PNW, 2 for US West, 3 for Rockies, 4 for East Cost, and 5 for Alps: "))
     playfulness = int(input("How playful do you want your skis? Enter a number 1-6, 1 being the most stable, 6 being the most playful: "))
     terrain = int(input("What type of ski are you looking for? Enter a number 1-5, 1 being All Mountain, 2 being All Mountain Wide, 3 being All Mountain Narrow, 4 being Powder, and 5 being a Carving Ski: "))
+    touring = int(input("Are you looking for a touring ski? Enter 1 for yes, 2 for no: "))
+    skier = Skier(name, gender, age, weight, height, skill, region, playfulness, terrain, touring)
+    skis = getSkis("SkiList.csv") # Gets list of all skis and information
+    print(topThree(skier, skis))
 
 main()
