@@ -1,6 +1,6 @@
 import discord
+import string
 from discord.ext import commands
-
 
 class Skier: # Class for the skier profile, uses total point system to match up with ski
     def __init__(self, name, gender, weight, height, skill, region, playfulness, terrain, touring): 
@@ -168,22 +168,110 @@ def main():
     skis = getSkis("SkiList.csv") # Gets list of all skis and information
     print(topThree(skier, skis))
 
+#--------------------------------------------Discord Bot-----------------------------------------------------#
+
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix="!", intents=intents)
-token = 'MTA5Mjk2MDc5NzEwMzI0MzI3NA.G3IFUz.aipapP9iZmn39fJ5ER896xrL8_-GL4TepAdPCQ'
+bot = commands.Bot(command_prefix="/", intents=intents)
+token = 'MTA5Mjk2MDc5NzEwMzI0MzI3NA.GtjWD4.FFRzL06tyh1V7eN-SeA7YpgBz6FwjDNVAzRJfk' 
 
 @bot.event
 async def on_ready():
-    print(bot.user)
+    print(bot.user.name + " ready")
 
 @bot.command()
 async def start(ctx):
-    genderInput = await ctx.send("Hello! What is your gender? Select M or F.")
-    await genderInput.add_reaction("\U0001f9d4\u200D\u2642\uFE0F") # male
-    await genderInput.add_reaction("\U0001f469") # female
-    genderInput = await bot.wait_for('reaction_add')
-    await ctx.send(genderInput)
-    weightInput = await ctx.send("Hello! What is your weight in lbs? Type in a whole number!")
-    weightInput = await bot.wait_for('message')
+    name = ctx.author.name # Gets username of user
+    print(name + " is using the bot")
+
+    genderInput = await ctx.send("Hello " + name + "! What is your gender? Select M or F.") # Asks user for gender
+    while True: # Loops until either male or female selected
+        await genderInput.add_reaction("\U0001f1f2") # male
+        await genderInput.add_reaction("\U0001f1eb") # female
+        gender, genderInput = await bot.wait_for('reaction_add') # emoji value
+        if(str(gender) == "\U0001f1eb"): # If user selects female
+            gender = "F"
+            break
+        elif(str(gender) == "\U0001f1f2"): # If user selects male
+            gender = "M"
+            break
+        genderInput = await ctx.send("Please react with one of the options!") # Prompts user to react again if they send invalid reaction
+
+    await ctx.send("What is your weight in lbs? Type in a whole number 1-600!") # WEIGHT
+    while True: # Loops until valid weight inputted
+        weightInput = await bot.wait_for('message')
+        weight = weightInput.content # Raw weight value
+        if(weight.isdigit()): # Checks if weight is an integer
+            weight = int(weight) # Changes weight to integer from string
+            if(weight <= 600 and weight >= 60): # Checks if weight is in range
+                break # Breaks out of while loop
+        await ctx.send("Please enter a valid whole number 60-600!") # Prompts user again for weight
+
+    await ctx.send("What is your height in inches? Type in a whole number 48-90!") # HEIGHT
+    while True: # Loops until valid height inputted
+        heightInput = await bot.wait_for('message')
+        height = heightInput.content # Raw height value
+        if(height.isdigit()): # Checks if weight is an integer
+            height = int(height) # Changes height to integer from string
+            if(height <= 90 and height >= 48): # Checks if height is in range
+                break # Breaks out of while loop
+        await ctx.send("Please enter a valid whole number 48-90!") # Prompts user again for height
+
+    skillInput = await ctx.send("What is your skill level? Choose a number 1-6\n1: Brand New\n2: Greens\n3: Blues\n4: Blacks \n5: Double Blacks\n6: All Terrain") # SKILL LEVEL
+    while True: # Loops until 1-6 selected
+        await skillInput.add_reaction("1\uFE0F\u20E3") # 1
+        await skillInput.add_reaction("2\uFE0F\u20E3") # 2
+        await skillInput.add_reaction("3\uFE0F\u20E3") # 3
+        await skillInput.add_reaction("4\uFE0F\u20E3") # 4
+        await skillInput.add_reaction("5\uFE0F\u20E3") # 5
+        await skillInput.add_reaction("6\uFE0F\u20E3") # 6
+        skill, skillInput = await bot.wait_for('reaction_add') # waits for reaction
+        if(str(skill) == "1\uFE0F\u20E3"):
+            skill = "F"
+            break
+        elif(str(skill) == "2\uFE0F\u20E3"):
+            skill = "G"
+            break
+        elif(str(skill) == "3\uFE0F\u20E3"):
+            skill = "B"
+            break
+        elif(str(skill) == "4\uFE0F\u20E3"):
+            skill = "L"
+            break
+        elif(str(skill) == "5\uFE0F\u20E3"):
+            skill = "D"
+            break
+        elif(str(skill) == "6\uFE0F\u20E3"):
+            skill = "A"
+            break
+        skillInput = await ctx.send("Please react with one of the options!") # Prompts user again for skill
+
+    regionInput = await ctx.send("Where do you normally ski? Choose a location\n\U0001f327\uFE0F: Pacific Northwest\n\U0001f332: Western US\n\U0001faa8: Rockies\n\U0001f9ca: East Coast\n\U0001f3d4\uFE0F: Alps") # REGION 
+    while True: # Loops until 1-6 selected
+        await regionInput.add_reaction("\U0001f327\uFE0F") # PNW
+        await regionInput.add_reaction("\U0001f332") # West
+        await regionInput.add_reaction("\U0001faa8") # Rockies
+        await regionInput.add_reaction("\U0001f9ca") # East
+        await regionInput.add_reaction("\U0001f3d4\uFE0F") # Alps
+        region, regionInput = await bot.wait_for('reaction_add') # waits for reaction
+        if(str(region) == "\U0001f327\uFE0F"):
+            region = "P"
+            break
+        elif(str(region) == "\U0001f332"):
+            region = "W"
+            break
+        elif(str(region) == "\U0001faa8"):
+            region = "R"
+            break
+        elif(str(region) == "\U0001f9ca"):
+            region = "E"
+            break
+        elif(str(region) == "\U0001f3d4\uFE0F"):
+            region = "A"
+            break
+        skillInput = await ctx.send("Please react with one of the options!") # Prompts user again for region 
+
+
 
 bot.run(token)
+
+# TO-DO: Finish discord.py integration, add txt file for token
