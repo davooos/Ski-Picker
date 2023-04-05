@@ -145,7 +145,7 @@ async def start(ctx):
             break
         genderInput = await ctx.send(embed=discord.Embed(description="Please react with one of the options!")) # Prompts user to react again if they send invalid reaction
 
-    await ctx.send("What is your weight in lbs? Type in a whole number 1-600!") # WEIGHT
+    await ctx.send(embed=discord.Embed(description="What is your weight in lbs? Type in a whole number 1-600!")) # WEIGHT
     while True: # Loops until valid weight inputted
         weightInput = await bot.wait_for('message')
         weight = weightInput.content # Raw weight value
@@ -153,9 +153,9 @@ async def start(ctx):
             weight = int(weight) # Changes weight to integer from string
             if(weight <= 600 and weight >= 60): # Checks if weight is in range
                 break # Breaks out of while loop
-        await ctx.send("Please enter a valid whole number 60-600!") # Prompts user again for weight
+        await ctx.send(embed=discord.Embed(description="Please enter a valid whole number 60-600!")) # Prompts user again for weight
 
-    await ctx.send("What is your height in inches? Type in a whole number 48-90!") # HEIGHT
+    await ctx.send(embed=discord.Embed(description="What is your height in inches? Type in a whole number 48-90!")) # HEIGHT
     while True: # Loops until valid height inputted
         heightInput = await bot.wait_for('message')
         height = heightInput.content # Raw height value
@@ -163,7 +163,7 @@ async def start(ctx):
             height = int(height) # Changes height to integer from string
             if(height <= 90 and height >= 48): # Checks if height is in range
                 break # Breaks out of while loop
-        await ctx.send("Please enter a valid whole number 48-90!") # Prompts user again for height
+        await ctx.send(embed=discord.Embed(description="Please enter a valid whole number 48-90!")) # Prompts user again for height
 
     skillInput = await ctx.send(embed=discord.Embed(description="What is your skill level? Choose a number 1-6\n1: Brand New\n2: Greens\n3: Blues\n4: Blacks \n5: Double Blacks\n6: All Terrain")) # SKILL LEVEL
     while True: # Loops until 1-6 selected
@@ -194,7 +194,7 @@ async def start(ctx):
             break
         skillInput = await ctx.send("Please react with one of the options!") # Prompts user again for skill
 
-    regionInput = await ctx.send("Where do you normally ski? Choose a location\n\U0001f327\uFE0F: Pacific Northwest\n\U0001f332: Western US\n\U0001faa8: Rockies\n\U0001f9ca: East Coast\n\U0001f3d4\uFE0F: Alps") # REGION 
+    regionInput = await ctx.send(embed=discord.Embed(description="Where do you normally ski? Choose a location\n\U0001f327\uFE0F: Pacific Northwest\n\U0001f332: Western US\n\U0001faa8: Rockies\n\U0001f9ca: East Coast\n\U0001f3d4\uFE0F: Alps")) # REGION 
     while True: # Loops until 1-6 selected
         await regionInput.add_reaction("\U0001f327\uFE0F") # PNW
         await regionInput.add_reaction("\U0001f332") # West
@@ -217,9 +217,9 @@ async def start(ctx):
         elif(str(region) == "\U0001f3d4\uFE0F"):
             region = "A"
             break
-        regionInput = await ctx.send("Please react with one of the options!") # Prompts user again for region 
+        regionInput = await ctx.send(embed=discord.Embed(description="Please react with one of the options!")) # Prompts user again for region 
 
-    playfulnessInput = await ctx.send("How playful or stiff do you want your ski? Choose a number 1-6\n(1 being most stable, 6 being most playful)") # PLAYFUL LEVEL
+    playfulnessInput = await ctx.send(embed=discord.Embed(description="How playful or stiff do you want your ski? Choose a number 1-6\n(1 being most stable, 6 being most playful)")) # PLAYFUL LEVEL
     while True: # Loops until 1-6 selected
         await playfulnessInput.add_reaction("1\uFE0F\u20E3") # Stiff
         await playfulnessInput.add_reaction("2\uFE0F\u20E3") 
@@ -246,9 +246,9 @@ async def start(ctx):
         elif(str(playfulness) == "6\uFE0F\u20E3"):
             playfulness = "A"
             break
-        playfulnessInput = await ctx.send("Please react with one of the options!") # Prompts user again for skill
+        playfulnessInput = await ctx.send(embed=discord.Embed(description="Please react with one of the options!")) # Prompts user again for skill
 
-    terrainInput = await ctx.send("What type of ski are you looking for? Choose an option\n\U0001f3bf: All Mountain\n\U0001f53c: All Mountain Wide\n\U0001f53d: All Mountain Narrow\n\u2744\uFE0F: Powder\n\U0001f90f: Carver") # TERRAIN 
+    terrainInput = await ctx.send(embed=discord.Embed(description="What type of ski are you looking for? Choose an option\n\U0001f3bf: All Mountain\n\U0001f53c: All Mountain Wide\n\U0001f53d: All Mountain Narrow\n\u2744\uFE0F: Powder\n\U0001f90f: Carver")) # TERRAIN 
     while True: # Loops until 1-6 selected
         await terrainInput.add_reaction("\U0001f3bf") # AM a
         await terrainInput.add_reaction("\U0001f53c") # AMW
@@ -271,7 +271,7 @@ async def start(ctx):
         elif(str(terrain) == "\U0001f90f"):
             terrain = "C" # Carver
             break
-        terrainInput = await ctx.send("Please react with one of the options!") # Prompts user again for region 
+        terrainInput = await ctx.send(embed=discord.Embed(description="Please react with one of the options!")) # Prompts user again for region 
 token = open("token.txt", "r").read()
 bot.run(token)
 bot.run(token)
