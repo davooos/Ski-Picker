@@ -1,3 +1,24 @@
+import discord
+from discord.ext import commands
+
+token = 'MTA5Mjk2MDc5NzEwMzI0MzI3NA.GaZQab.JeMclvVrSOSXOZgNe-OfL2zgoqiasFKlD02j6w'
+intents = discord.Intents.all()
+prefix = "/"
+bot = commands.Bot(command_prefix=prefix, intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user}")
+
+@bot.event
+async def on_raw_reaction_add(payload):
+    guild = discord.utils.find(lambda g: g.id == payload.guild_id, bot.guilds)
+    if payload.emoji.name == 
+
+
+
+bot.run(token)
+
 class Skier: # Class for the skier profile, uses total point system to match up with ski
     def __init__(self, name, gender, age, weight, height, skill, region, playfulness, terrain, touring): 
         self.name = name # String with username
@@ -167,3 +188,4 @@ def main():
     print(topThree(skier, skis))
 
 main()
+bot.run(token)
