@@ -1,5 +1,5 @@
 import discord
-import string
+import time
 from discord.ext import commands
 
 class Skier: # Class for the skier profile, uses total point system to match up with ski
@@ -37,58 +37,6 @@ class Skier: # Class for the skier profile, uses total point system to match up 
                 return "S" # Small
             elif(self.weight < 80 or self.height < 55):
                 return "T" # Very small
-
-    def get_skill(self): # Returns skill level with letter
-        if(self.skill == 1):
-            return "F" # First timer
-        elif(self.skill == 2):
-            return "G" # Greens
-        elif(self.skill == 3):
-            return "B" # Blues
-        elif(self.skill == 4):
-            return "L" # Blacks
-        elif(self.skill == 5):
-            return "D" # Double blacks
-        elif(self.skill == 6):
-            return "A" # All terrain
-    
-    def get_region(self): # Returns region with letter
-        if(self.region == 1):
-            return "P" # PNW
-        elif(self.region == 2):
-            return "W" # West
-        elif(self.region == 3):
-            return "R" # Rockies
-        elif(self.region == 4):
-            return "E" # East
-        elif(self.region == 5):
-            return "A" # Alps
-    
-    def get_playfulness(self):
-        if(self.playfulness == 1):
-            return "A" # Most stable
-        elif(self.playfulness == 2):
-            return "B"
-        elif(self.playfulness == 3):
-            return "C" 
-        elif(self.playfulness == 4):
-            return "D" 
-        elif(self.playfulness == 5):
-            return "E" 
-        elif(self.playfulness == 6):
-            return "F" # Most playful
-
-    def get_terrain(self):
-        if(self.terrain == 1):
-            return "A" # All mountain
-        elif(self.terrain == 2):
-            return "W" # All mntn wide
-        elif(self.terrain == 3):
-            return "N" # All mntn narrow
-        elif(self.terrain == 4):
-            return "P" # Powder
-        elif(self.terrain == 5):
-            return "C" # Carver
         
     def get_touring(self):
         if(self.touring == 1):
@@ -172,7 +120,6 @@ def main():
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="/", intents=intents)
-token = 'MTA5Mjk2MDc5NzEwMzI0MzI3NA.Grnuga.pzoLaDgpE75IslJ9F9a-OzSoYhWuqfdUm9WEbI' 
 
 @bot.event
 async def on_ready():
@@ -182,8 +129,10 @@ async def on_ready():
 async def start(ctx):
     name = ctx.author.name # Gets username of user
     print(name + " is using the bot")
+    await ctx.send(embed=discord.Embed(title="Hello " + name + "!", description="Please wait for the reactions to fully add before reacting.\nCreated by davooos#7792"))
+    time.sleep(2)
 
-    genderInput = await ctx.send(embed=discord.Embed(description="Hello " + name + "! What is your gender? Select M or F.")) # Asks user for gender
+    genderInput = await ctx.send(embed=discord.Embed(description="What is your gender? Select M or F.")) # Asks user for gender
     while True: # Loops until either male or female selected
         await genderInput.add_reaction("\U0001f1f2") # male
         await genderInput.add_reaction("\U0001f1eb") # female
@@ -323,9 +272,8 @@ async def start(ctx):
             terrain = "C" # Carver
             break
         terrainInput = await ctx.send("Please react with one of the options!") # Prompts user again for region 
-
-
-
+token = open("token.txt", "r").read()
+bot.run(token)
 bot.run(token)
 
 # TO-DO: Finish discord.py integration, add txt file for token
