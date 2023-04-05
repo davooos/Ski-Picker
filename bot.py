@@ -216,7 +216,7 @@ async def start(ctx):
                 break # Breaks out of while loop
         await ctx.send("Please enter a valid whole number 48-90!") # Prompts user again for height
 
-    skillInput = await ctx.send("What is your skill level? Choose a number 1-6\n1: Brand New\n2: Greens\n3: Blues\n4: Blacks \n5: Double Blacks\n6: All Terrain") # SKILL LEVEL
+    skillInput = await ctx.send(embed=discord.Embed(description="What is your skill level? Choose a number 1-6\n1: Brand New\n2: Greens\n3: Blues\n4: Blacks \n5: Double Blacks\n6: All Terrain")) # SKILL LEVEL
     while True: # Loops until 1-6 selected
         await skillInput.add_reaction("1\uFE0F\u20E3") # 1
         await skillInput.add_reaction("2\uFE0F\u20E3") # 2
@@ -324,7 +324,7 @@ async def start(ctx):
             break
         terrainInput = await ctx.send("Please react with one of the options!") # Prompts user again for region 
 
-    
+
 
 bot.run(token)
 
