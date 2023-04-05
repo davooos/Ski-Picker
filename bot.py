@@ -1,29 +1,11 @@
 import discord
 from discord.ext import commands
 
-token = 'MTA5Mjk2MDc5NzEwMzI0MzI3NA.GaZQab.JeMclvVrSOSXOZgNe-OfL2zgoqiasFKlD02j6w'
-intents = discord.Intents.all()
-prefix = "/"
-bot = commands.Bot(command_prefix=prefix, intents=intents)
-
-@bot.event
-async def on_ready():
-    print(f"Logged in as {bot.user}")
-
-@bot.event
-async def on_raw_reaction_add(payload):
-    guild = discord.utils.find(lambda g: g.id == payload.guild_id, bot.guilds)
-    if payload.emoji.name == 
-
-
-
-bot.run(token)
 
 class Skier: # Class for the skier profile, uses total point system to match up with ski
-    def __init__(self, name, gender, age, weight, height, skill, region, playfulness, terrain, touring): 
+    def __init__(self, name, gender, weight, height, skill, region, playfulness, terrain, touring): 
         self.name = name # String with username
         self.gender = gender # String with F or M
-        self.age = age # Integer with age
         self.weight = weight # Integer with weight in lbs
         self.height = height # Integer with height in inches
         self.skill = skill # Integer with skill level 1-6
@@ -175,7 +157,6 @@ def topThree(skier, skis): # Returns top three ski options
 def main():
     name = str(input("What is your username?: "))
     gender = str(input("What is your gender? Enter M or F: "))
-    age = int(input("What is your age? Enter a number 1-100: "))
     weight = int(input("What is your weight in lbs? Enter a whole number 1-600: "))
     height = int(input("What is your height in inches? Enter a whole number 1-100: "))
     skill = int(input("What is your skill level? Enter a whole number 1-6, 1 never touched skis, 3 skiing blues, and 6 can ski the entire mountain: "))
@@ -183,9 +164,26 @@ def main():
     playfulness = int(input("How playful do you want your skis? Enter a number 1-6, 1 being the most stable, 6 being the most playful: "))
     terrain = int(input("What type of ski are you looking for? Enter a number 1-5, 1 being All Mountain, 2 being All Mountain Wide, 3 being All Mountain Narrow, 4 being Powder, and 5 being a Carving Ski: "))
     touring = int(input("Are you looking for a touring ski? Enter 1 for yes, 2 for no: "))
-    skier = Skier(name, gender, age, weight, height, skill, region, playfulness, terrain, touring)
+    skier = Skier(name, gender, weight, height, skill, region, playfulness, terrain, touring)
     skis = getSkis("SkiList.csv") # Gets list of all skis and information
     print(topThree(skier, skis))
 
-main()
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix="!", intents=intents)
+token = 'MTA5Mjk2MDc5NzEwMzI0MzI3NA.G3IFUz.aipapP9iZmn39fJ5ER896xrL8_-GL4TepAdPCQ'
+
+@bot.event
+async def on_ready():
+    print(bot.user)
+
+@bot.command()
+async def start(ctx):
+    genderInput = await ctx.send("Hello! What is your gender? Select M or F.")
+    await genderInput.add_reaction("\U0001f9d4\u200D\u2642\uFE0F") # male
+    await genderInput.add_reaction("\U0001f469") # female
+    genderInput = await bot.wait_for('reaction_add')
+    await ctx.send(genderInput)
+    weightInput = await ctx.send("Hello! What is your weight in lbs? Type in a whole number!")
+    weightInput = await bot.wait_for('message')
+
 bot.run(token)
