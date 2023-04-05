@@ -272,6 +272,9 @@ async def start(ctx):
             terrain = "C" # Carver
             break
         terrainInput = await ctx.send(embed=discord.Embed(description="Please react with one of the options!")) # Prompts user again for region 
+
+        # add touring
+
 token = open("token.txt", "r").read()
 bot.run(token)
 bot.run(token)
