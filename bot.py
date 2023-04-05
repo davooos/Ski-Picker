@@ -172,7 +172,7 @@ def main():
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="/", intents=intents)
-token = 'MTA5Mjk2MDc5NzEwMzI0MzI3NA.GtjWD4.FFRzL06tyh1V7eN-SeA7YpgBz6FwjDNVAzRJfk' 
+token = 'MTA5Mjk2MDc5NzEwMzI0MzI3NA.Grnuga.pzoLaDgpE75IslJ9F9a-OzSoYhWuqfdUm9WEbI' 
 
 @bot.event
 async def on_ready():
@@ -183,7 +183,7 @@ async def start(ctx):
     name = ctx.author.name # Gets username of user
     print(name + " is using the bot")
 
-    genderInput = await ctx.send("Hello " + name + "! What is your gender? Select M or F.") # Asks user for gender
+    genderInput = await ctx.send(embed=discord.Embed(description="Hello " + name + "! What is your gender? Select M or F.")) # Asks user for gender
     while True: # Loops until either male or female selected
         await genderInput.add_reaction("\U0001f1f2") # male
         await genderInput.add_reaction("\U0001f1eb") # female
@@ -194,7 +194,7 @@ async def start(ctx):
         elif(str(gender) == "\U0001f1f2"): # If user selects male
             gender = "M"
             break
-        genderInput = await ctx.send("Please react with one of the options!") # Prompts user to react again if they send invalid reaction
+        genderInput = await ctx.send(embed=discord.Embed(description="Please react with one of the options!")) # Prompts user to react again if they send invalid reaction
 
     await ctx.send("What is your weight in lbs? Type in a whole number 1-600!") # WEIGHT
     while True: # Loops until valid weight inputted
@@ -268,9 +268,63 @@ async def start(ctx):
         elif(str(region) == "\U0001f3d4\uFE0F"):
             region = "A"
             break
-        skillInput = await ctx.send("Please react with one of the options!") # Prompts user again for region 
+        regionInput = await ctx.send("Please react with one of the options!") # Prompts user again for region 
 
+    playfulnessInput = await ctx.send("How playful or stiff do you want your ski? Choose a number 1-6\n(1 being most stable, 6 being most playful)") # PLAYFUL LEVEL
+    while True: # Loops until 1-6 selected
+        await playfulnessInput.add_reaction("1\uFE0F\u20E3") # Stiff
+        await playfulnessInput.add_reaction("2\uFE0F\u20E3") 
+        await playfulnessInput.add_reaction("3\uFE0F\u20E3") 
+        await playfulnessInput.add_reaction("4\uFE0F\u20E3") 
+        await playfulnessInput.add_reaction("5\uFE0F\u20E3") 
+        await playfulnessInput.add_reaction("6\uFE0F\u20E3") # Playful
+        playfulness, playfulnessInput = await bot.wait_for('reaction_add') # waits for reaction
+        if(str(playfulness) == "1\uFE0F\u20E3"):
+            playfulness = "F"
+            break
+        elif(str(playfulness) == "2\uFE0F\u20E3"):
+            playfulness = "G"
+            break
+        elif(str(playfulness) == "3\uFE0F\u20E3"):
+            playfulness = "B"
+            break
+        elif(str(playfulness) == "4\uFE0F\u20E3"):
+            playfulness = "L"
+            break
+        elif(str(playfulness) == "5\uFE0F\u20E3"):
+            playfulness = "D"
+            break
+        elif(str(playfulness) == "6\uFE0F\u20E3"):
+            playfulness = "A"
+            break
+        playfulnessInput = await ctx.send("Please react with one of the options!") # Prompts user again for skill
 
+    terrainInput = await ctx.send("What type of ski are you looking for? Choose an option\n\U0001f3bf: All Mountain\n\U0001f53c: All Mountain Wide\n\U0001f53d: All Mountain Narrow\n\u2744\uFE0F: Powder\n\U0001f90f: Carver") # TERRAIN 
+    while True: # Loops until 1-6 selected
+        await terrainInput.add_reaction("\U0001f3bf") # AM a
+        await terrainInput.add_reaction("\U0001f53c") # AMW
+        await terrainInput.add_reaction("\U0001f53d") # AMN
+        await terrainInput.add_reaction("\u2744\uFE0F") # Pow a
+        await terrainInput.add_reaction("\U0001f90f") # Carver a
+        terrain, terrainInput = await bot.wait_for('reaction_add') # waits for reaction
+        if(str(terrain) == "\U0001f3bf"):
+            terrain = "A" # All mountain
+            break
+        elif(str(terrain) == "\U0001f53c"):
+            terrain = "W" # AM Wide
+            break
+        elif(str(terrain) == "\U0001f53d"):
+            terrain = "N" # AM Narrow
+            break
+        elif(str(terrain) == "\u2744\uFE0F"):
+            terrain = "P" # Powder
+            break
+        elif(str(terrain) == "\U0001f90f"):
+            terrain = "C" # Carver
+            break
+        terrainInput = await ctx.send("Please react with one of the options!") # Prompts user again for region 
+
+    
 
 bot.run(token)
 
