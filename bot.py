@@ -279,6 +279,5 @@ async def start(ctx):
 
 token = open("token.txt", "r").read()
 bot.run(token)
-bot.run(token)
 
 # TO-DO: Finish discord.py integration
